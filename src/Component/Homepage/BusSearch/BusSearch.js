@@ -1,12 +1,15 @@
 import React, { useRef, useState } from 'react'
-import axios from 'axios'
 
+import axios from 'axios'
 import { useDispatch } from 'react-redux';
-import { searchedBus } from '../../../redux/action/index'
+import { useNavigate } from 'react-router-dom';
+import { searchedBus, searchedByCostumer } from '../../../redux/action/index'
 
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { Button } from 'react-bootstrap'
+
+import LocationCityIcon from '@mui/icons-material/LocationCity';
+
 
 import classes from './BusSearch.module.css'
 
@@ -57,7 +60,7 @@ export default function BusSearch() {
 
     const dispatch = useDispatch()
 
-
+    const navigate = useNavigate()
 
     //handle search for bus 
     const handleSearch = async (e) => {
@@ -72,12 +75,15 @@ export default function BusSearch() {
                 to: enteredTo.toLowerCase(),
                 date: enteredDate
             }
+            dispatch(searchedByCostumer(body))
 
             const response = await axios.post('http://localhost:8000/getsortedBus', body)
 
             //need to work for routing will store data in redux 
             dispatch(searchedBus(response.data))
-            console.log(response.data);
+            navigate("/relatedBus")
+
+
         }
     }
 
@@ -133,24 +139,30 @@ export default function BusSearch() {
         <div className={classes.container}>
 
             <div className={classes.container1}>
-                <input type="text" placeholder="From.." className={classes.inputField} ref={fromInputRef} onChange={handleChange} onKeyDown={() => setfield("From")} />
-                {cityName.length !== 0 && field === "From" && cityName.map(city => <p key={city} onClick={() => handleClick(city)}>{city}</p>)}
+                <LocationCityIcon fontSize="large" />
+                <input type="text" placeholder="From.." required className={classes.inputField} ref={fromInputRef} onChange={handleChange} onKeyDown={() => setfield("From")} />
+                {cityName.length !== 0 && field === "From" && <div className={classes.listContainer}>
+                    {cityName.map(city => <p key={city} onClick={() => handleClick(city)}>{city}</p>)}
+                </div>}
+
             </div>
 
 
 
-            <CompareArrowsIcon onClick={handleLocation} className={classes.arrowicon} fontSize="large" />
+
 
             <div className={classes.container1}>
-                <input type="text" placeholder="   To.." className={classes.inputField} ref={toInputRef} onChange={handleChange} onKeyDown={() => setfield("To")} />
+                <CompareArrowsIcon onClick={handleLocation} className={classes.arrowicon} fontSize="large" />
+                <LocationCityIcon fontSize="large" />
+                <input type="text" placeholder="To.." required className={classes.inputField} ref={toInputRef} onChange={handleChange} onKeyDown={() => setfield("To")} />
                 {cityName.length !== 0 && field === "To" && <div className={classes.listContainer}>
                     {cityName.map(city => <p key={city} onClick={() => handleClick(city)}>{city}</p>)}
                 </div>}
             </div>
-            <input type="date" placeholder="To.." className={classes.inputField} ref={dateInputRef} />
+            <input type="date" placeholder="To.." required className={classes.inputField} ref={dateInputRef} />
 
 
-            <Button className={classes.btn1} onClick={handleSearch}>{<ArrowForwardIcon fontSize="large" />}</Button>
+            <button className={classes.btn1} onClick={handleSearch}>Search {< ArrowForwardIcon fontSize="large" />}</button>
         </div>
     )
 }

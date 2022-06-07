@@ -1,0 +1,40 @@
+.rootSeat {
+    min-height: 60vh;
+    min-width: 50%;
+    border: 1px solid red;
+    display: flex;
+}
+
+.busArea {
+    margin: 5%;
+    border: 1px solid red;
+    height: 30vh;
+    width: 10vw;
+}
+
+.driver {
+    margin-left: 80%;
+}
+
+.seatContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.seat {
+    color: rgb(176, 210, 241);
+    cursor: pointer;
+}
+
+.seat1 {
+    color: rgb(225, 180, 107);
+}
+
+.seat2 {
+    color: brown;
+}
+
+.details {
+    
+}

@@ -1,0 +1,18 @@
+.root {
+    margin: 1%;
+    -webkit-box-shadow: 8px 11px 21px 4px rgba(0, 0, 0, 0.78);
+    box-shadow: 8px 11px 21px 4px rgba(0, 0, 0, 0.78);
+    border-top: 4px solid rgb(142, 158, 230);
+}
+
+.btn1 {
+    background-color: rgb(142, 158, 230);
+    color: aliceblue;
+    margin-left: -2rem;
+}
+
+.btn1:hover {
+
+    color: black;
+    margin-left: -2rem;
+}

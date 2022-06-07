@@ -1,0 +1,13 @@
+.root {
+
+    display: flex;
+    flex-direction: column;
+    /* need to add disply flex*/
+    flex-flow: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.busContainer {
+    margin-bottom: 15px;
+}

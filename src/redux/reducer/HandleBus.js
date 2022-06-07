@@ -1,14 +1,33 @@
-const buses = [];
+const initialState = {
+    buses: [], searchedInput: []
+};
 
-const handleBus = (state = buses, action) => {
-    const bus = action.payload
+const handleBus = (state = initialState, action) => {
+
+
 
     switch (action.type) {
         case "FoundBus":
-            return [...bus]
+
+            return {
+                buses: [...action.payload],
+                searchedInput: [state.searchedInput]
+            };
+
             break;
+        case "SERCHED":
+
+            return {
+                buses: [...state.buses],
+                searchedInput: [action.payload]
+            };
+            break;
+
         default: return state;
+
+
     }
 }
+
 
 export default handleBus;
