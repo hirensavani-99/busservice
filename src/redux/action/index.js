@@ -3,4 +3,11 @@ export const searchedBus = (buses) => {
         type: "FoundBus",
         payload: buses
     }
+}
+
+export const searchedByCostumer = (searched) => {
+    return {
+        type: "SERCHED",
+        payload: searched
+    }
 } 
