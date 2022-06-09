@@ -1,6 +1,8 @@
 import handleBus from "./HandleBus";
+import handleUser from "./handleUser"
 import { combineReducers } from "redux";
 const rootReducers = combineReducers({
-    handleBus
+    handleBus,
+    handleUser
 })
 export default rootReducers;

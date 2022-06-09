@@ -1,5 +1,5 @@
 .rootSeat {
-    min-height: 60vh;
+    min-height: 30vh;
     min-width: 50%;
     border: 1px solid red;
     display: flex;
@@ -35,6 +35,16 @@
     color: brown;
 }
 
-.details {
-    
+.details {}
+
+.btn1 {
+    background: rgb(142, 158, 230);
+    color: rgb(36, 34, 34);
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    width: 150px;
+    height: 50px;
+    border: none;
+    font-weight: 600;
 }

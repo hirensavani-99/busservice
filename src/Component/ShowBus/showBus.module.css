@@ -11,3 +11,18 @@
 .busContainer {
     margin-bottom: 15px;
 }
+
+.title {
+    display: flex;
+}
+
+.from {
+    padding: 10px;
+    background-color: rgb(142, 158, 230);
+    margin-left: 3%;
+}
+
+.to {
+    padding: 15px;
+    background-color: rgb(216, 249, 168)
+}

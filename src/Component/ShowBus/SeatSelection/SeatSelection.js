@@ -1,7 +1,15 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+
+
+import BookingForm from './BookingForm';
 
 import BedroomChildIcon from '@mui/icons-material/BedroomChild';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
+import Button from '@mui/material/Button';
+import { Table } from 'react-bootstrap'
 
 import classes from './SeatSelection.module.css'
 
@@ -9,6 +17,7 @@ import classes from './SeatSelection.module.css'
 export default function SeatSelection(props) {
 
     const [seatSelected1, setSeatSelected1] = useState([])
+    const [open, setOpen] = React.useState(false);
 
 
     let array = [...props.seats]
@@ -18,7 +27,22 @@ export default function SeatSelection(props) {
 
 
     const handleSelectSeat = (index) => {
-        setSeatSelected1(prv => [...prv, index])
+        if (seatSelected1.includes(index)) {
+            setSeatSelected1(prv => {
+                return prv.filter(seat => seat !== index)
+            })
+        }
+        else {
+            setSeatSelected1(prv => [...prv, index])
+        }
+
+    }
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const bookHandler = () => {
+        setOpen(!open);
     }
 
     return (
@@ -40,7 +64,6 @@ export default function SeatSelection(props) {
                             {lowerDeck.map((seat, index) => index % 2 !== 0 && <p key={index} className={seat === 0 ? seatSelected1.includes(index) ? classes.seat2 : classes.seat : classes.seat1} onClick={() => handleSelectSeat(index)}> <BedroomChildIcon /></p>)}
 
                         </div>
-
                     </div>
 
 
@@ -71,7 +94,31 @@ export default function SeatSelection(props) {
             </>
 
             <div className={classes.details}>
+                <Table striped bordered hover>
+                    <thead>
+                        <tr>
+                            <th>seat Number</th>
+                            <th>price</th>
 
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {seatSelected1.map(seatNumber =>
+                            <tr>
+                                <td>{seatNumber}</td>
+                                <td>{props.price}</td>
+                            </tr>)}
+                    </tbody>
+                </Table>
+                <h3>Total : {props.price * seatSelected1.length}</h3>
+                <button className={classes.btn1} disabled={seatSelected1.length === 0} onClick={bookHandler}>Book Now</button>
+
+                <Backdrop
+                    sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                    open={open}
+                >
+                    <BookingForm />
+                </Backdrop>
             </div>
         </div >
     )
