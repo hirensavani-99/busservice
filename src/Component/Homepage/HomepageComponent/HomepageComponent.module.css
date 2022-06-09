@@ -1,0 +1,67 @@
+.root {
+    width: 54vw;
+    margin-left: 23%;
+}
+
+.container {
+    margin: 3%;
+    width: 345px;
+    -webkit-box-shadow: 8px 11px 21px 4px rgba(0, 0, 0, 0.78);
+    box-shadow: 8px 11px 21px 4px rgba(0, 0, 0, 0.78);
+    border-top: 4px solid rgb(142, 158, 230);
+
+}
+
+
+
+.img {
+    border-radius: 50%;
+    max-width: 80px;
+    margin-left: 5%;
+}
+
+.imgContainer {
+    display: flex;
+    justify-content: baseline;
+
+}
+
+.twitContainer {
+    margin: 3%;
+    width: 345px;
+    -webkit-box-shadow: 8px 11px 21px 4px rgba(0, 0, 0, 0.78);
+    box-shadow: 8px 11px 21px 4px rgba(0, 0, 0, 0.78);
+    border-top: 4px solid rgb(142, 158, 230);
+    border-radius: 3%;
+
+}
+
+body {
+    display: flex;
+    min-height: 80vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+.logo {
+    height: 50%;
+    width: 30%;
+    margin-bottom: 20px;
+}
+
+.pagefooter {
+    padding: 3%;
+    background-color: black;
+    color: white;
+}
+
+.text {
+    color: blanchedalmond;
+}
+
+.ul {
+    list-style-type: none;
+}

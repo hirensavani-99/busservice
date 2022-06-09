@@ -39,7 +39,7 @@ export default function Header(props) {
 
     const logoutHandler = () => {
 
-        
+
         dispatch(LogoutHandler())
     }
 
@@ -56,10 +56,10 @@ export default function Header(props) {
                     {(toggaleMenu || screenWidth > 600) && <div className={classes.list}>
 
 
-                        <NavLink exact activeClassName={classes.active} className={classes.iconDetail} to='/help'>Help</NavLink>
-                        <NavLink exact activeClassName={classes.active} className={classes.iconDetail} to='/Partner'>AboutUs</NavLink>
-                        {!userData.user && <NavLink exact activeClassName={classes.active} className={classes.iconDetail} to='/signin'>signIn</NavLink>}
-                        {!userData.user && <NavLink exact activeClassName={classes.active} className={classes.iconDetail} to='/signup'>signUp</NavLink>}
+                        <NavLink exact className={classes.iconDetail} to='/help'>Help</NavLink>
+                        <NavLink exact className={classes.iconDetail} to='/Partner'>AboutUs</NavLink>
+                        {!userData.user && <><NavLink exact className={classes.iconDetail} to='/signin'>signIn</NavLink>
+                            <NavLink exact className={classes.iconDetail} to='/signup'>signUp</NavLink></>}
                         {userData.user && <a className={classes.iconDetail} onClick={logoutHandler}>Logout</a>}
 
 

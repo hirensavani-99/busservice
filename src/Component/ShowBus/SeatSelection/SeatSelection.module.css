@@ -1,14 +1,14 @@
 .rootSeat {
     min-height: 30vh;
     min-width: 50%;
-    border: 1px solid red;
+    border: 1px solid burlywood;
     display: flex;
 }
 
 .busArea {
     margin: 5%;
-    border: 1px solid red;
-    height: 30vh;
+    border: 3px solid black;
+    height: 38vh;
     width: 10vw;
 }
 
@@ -20,6 +20,15 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+
+}
+
+
+.seatContainer1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
 }
 
 .seat {

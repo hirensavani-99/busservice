@@ -34,30 +34,30 @@ let busArray = [
         travelSchedule: [
             {
                 destination: "delhi",
-                time: "10:30 AM",
+                time: "10:30:00 AM",
                 pickup: 'rajiv chowk'
             },
             {
                 destination: "surat",
-                time: "4:00 PM",
+                time: "4:00:00 PM",
                 pickup: 'kamrej'
             },
             {
                 destination: "mumbai",
-                time: "7:00 PM",
+                time: "7:00:00 PM",
                 pickup: 'om street'
             },
             {
                 destination: "hyderabad",
-                time: "11:50 PM",
+                time: "11:50:00 PM",
                 pickup: 'gandhi bajar'
             }
         ],
         date: "2022-10-06",
         rating: 3.7,
-        ratedBy: 1900,
+        ratedBy: 190,
         price: 1700,
-        seats_Available: [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+        seats_Available: [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
         facility: ['water', 'meal', 'wifi', 'pillow', 'blankets', 'chargingpoints', 'readinglights', 'EContactNumber', 'Tracking']
     },
     {
@@ -67,30 +67,30 @@ let busArray = [
         travelSchedule: [
             {
                 destination: "ajmer",
-                time: "4:30 AM",
+                time: "4:30:00 am",
                 pickup: 'gandhi bajar'
             },
             {
                 destination: "surat",
-                time: "7:00 AM",
+                time: "7:00:00 am",
                 pickup: 'shanti Hospital'
             },
             {
                 destination: "mumbai",
-                time: "10:00 AM",
+                time: "10:00:00 am",
                 pickup: 'milan chowk'
             },
             {
                 destination: "goa",
-                time: "12:40 PM",
+                time: "12:40:00 am",
                 pickup: 'vatika'
             }
         ],
         date: "2022-11-06",
         rating: 4.7,
-        ratedBy: 1900,
-        price: 1700,
-        seats_Available: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0],
+        ratedBy: 190,
+        price: 170,
+        seats_Available: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0],
         facility: ['water', 'meal', 'wifi', 'pillow', 'blankets', 'chargingpoints', 'readinglights', 'EContactNumber', 'Tracking']
     }
 ]
@@ -122,14 +122,26 @@ app.post("/getsortedBus", (req, res) => {
 
     return res.status(200).send(sortedByPlace)
 
+})
+app.put("/ticketBooking/:id", (req, res) => {
+    let id = req.params.id;
+    let data = req.body;
+    ;
 
+    const bus = busArray.filter(bus => bus.root_Id == id)
 
+    if (bus.length !== 0) {
+        bus[0].seats_Available = data.seats_Available
+
+        res.status(200).send(bus)
+    } else {
+        res.status(404).send("we are unable to find this bus")
+    }
 })
 
-
 app.post("/user/login", (req, res) => {
-    console.log(req.body);
-    credential = req.body;
+
+    let credential = req.body;
     let person = users.filter(user => user.email.toLowerCase() === credential.email.toLowerCase() && user.password.toLowerCase() === credential.password.toLowerCase())
 
     if (person.length !== 0) {
@@ -143,7 +155,7 @@ app.post("/user/login", (req, res) => {
 
 app.post("/user/register", (req, res) => {
     console.log(req.body);
-    credential = req.body;
+    let credential = req.body;
     let person = users.filter(user => user.email.toLowerCase() === credential.email.toLowerCase())
 
     if (person.length !== 0) {

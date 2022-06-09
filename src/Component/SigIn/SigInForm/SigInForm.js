@@ -23,7 +23,7 @@ export default function SignInForm(props) {
     const navigate = useNavigate()
 
 
-    const style = { position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)" };
+   
     const authSubmitHandler = async (e) => {
         e.preventDefault();
 
@@ -64,8 +64,8 @@ export default function SignInForm(props) {
             <div className={classes.root}>
                 <ToastContainer />
                 <Card className={classes.container} >
-                    {!props.isSignUp && <h2 h2 className={classes.title}>Si<span className={classes.span}>g</span>nIn</h2>}
-                    {props.isSignUp && <h2 h2 className={classes.title}>Si<span className={classes.span}>g</span>nUp</h2>}
+                    {!props.isSignUp && <h2 className={classes.title}>Si<span className={classes.span}>g</span>nIn</h2>}
+                    {props.isSignUp && <h2 className={classes.title}>Si<span className={classes.span}>g</span>nUp</h2>}
                     <hr />
                     <Card.Body>
 

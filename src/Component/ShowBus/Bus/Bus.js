@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 
 import { useNavigate } from 'react-router-dom';
+import moment from 'moment';
 
 import SeatSelections from '../SeatSelection/SeatSelection';
 
@@ -28,20 +29,9 @@ import classes from './Bus.module.css'
 export default function Bus(props) {
 
 
-    const [startTime, setStartTime] = useState("")
-    const [endTime, setEndTime] = useState("")
+
     const [showSeats, setShowSeats] = useState(false)
 
-
-    const navigate = useNavigate()
-
-    const diff_minutes = (dt2, dt1) => {
-
-        var diff = (dt2.getTime(endTime) - dt1.getTime(startTime)) / 1000;
-        diff /= 60;
-        return Math.abs(Math.round(diff));
-
-    }
 
     const handleSeats = () => {
         setShowSeats(!showSeats)
@@ -58,6 +48,8 @@ export default function Bus(props) {
 
         return emptySeats;
     }
+
+
     return (
         <div className={classes.root} key={props.busService.root_Id}>
             <Card sx={{ maxWidth: 900 }}>
@@ -75,11 +67,13 @@ export default function Bus(props) {
                             Departure
                         </Typography>
                         {
-                            props.busService.travelSchedule.map(city => city.destination === props.searched[0][0].from && <Typography fontWeight={700}>{city.time}</Typography>)
+                            props.busService.travelSchedule.map(city => city.destination === props.searched[0][0].from &&
+                                (<>
+                                    <Typography fontWeight={700}>{city.time}</Typography>
+                                    <Typography variant="body2" color="text.secondary">{city.pickup}</Typography>
+                                </>))
                         }
-                        {
-                            props.busService.travelSchedule.map(city => city.destination === props.searched[0][0].from && <Typography variant="body2" color="text.secondary">{city.pickup}</Typography>)
-                        }
+
                     </Stack>
 
                     <Stack spacing={0.5} ml={4} mr={4}>
@@ -88,7 +82,7 @@ export default function Bus(props) {
                         </Typography>
 
                         <Typography variant="body2" color="text.secondary">
-                            05h 30m
+                            5h 30min
                         </Typography>
                     </Stack>
 
@@ -97,11 +91,14 @@ export default function Bus(props) {
                             Arrival
                         </Typography>
                         {
-                            props.busService.travelSchedule.map(city => city.destination === props.searched[0][0].to && <Typography fontWeight={700}>{city.time}</Typography>)
+                            props.busService.travelSchedule.map(city => city.destination === props.searched[0][0].to &&
+                                (<>
+
+                                    <Typography fontWeight={700}>{city.time}</Typography>
+                                    <Typography variant="body2" color="text.secondary">{city.pickup}</Typography>
+                                </>))
                         }
-                        {
-                            props.busService.travelSchedule.map(city => city.destination === props.searched[0][0].to && <Typography variant="body2" color="text.secondary">{city.pickup}</Typography>)
-                        }
+
                     </Stack>
                     <Stack spacing={0.5} ml={5} mr={7}>
                         <Typography variant="body2" color="text.secondary">
@@ -153,7 +150,7 @@ export default function Bus(props) {
                 </Box>
 
             </Card>
-            {showSeats && <SeatSelections seats={props.busService.seats_Available} price={props.busService.price} />}
+            {showSeats && <SeatSelections seats={props.busService.seats_Available} price={props.busService.price} id={props.busService.root_Id}/>}
         </div>
     )
 }

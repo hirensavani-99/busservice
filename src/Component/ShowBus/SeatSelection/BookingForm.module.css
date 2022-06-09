@@ -1,0 +1,28 @@
+.btn1 {
+    background: rgb(142, 158, 230);
+    color: rgb(36, 34, 34);
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    width: 150px;
+    height: 50px;
+    border: none;
+    font-weight: 600;
+    margin-top: 3%;
+}
+
+.root {
+    height: auto;
+    width: 30%;
+    border-radius: 1% 1% 0 0;
+    margin: 0 33%;
+    padding: 15px;
+    color: rgb(29, 29, 29);
+    font-weight: 500;
+    -webkit-box-shadow: 8px 11px 21px 4px rgba(0, 0, 0, 0.78);
+    box-shadow: 8px 11px 21px 4px rgba(0, 0, 0, 0.78);
+    border-top: 4px solid greenyellow;
+    font-family: "Nunito";
+    margin-top: 5%;
+    background-color: rgb(252, 250, 250);
+}
