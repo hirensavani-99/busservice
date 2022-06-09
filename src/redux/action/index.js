@@ -10,4 +10,17 @@ export const searchedByCostumer = (searched) => {
         type: "SERCHED",
         payload: searched
     }
+}
+
+export const LoginHandler = (userdata) => {
+    return {
+        type: "LOGIN",
+        payload: userdata
+    }
+} 
+
+export const LogoutHandler = () => {
+    return {
+        type: "LOGOUT"
+    }
 } 

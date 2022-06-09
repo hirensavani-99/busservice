@@ -153,7 +153,7 @@ export default function Bus(props) {
                 </Box>
 
             </Card>
-            {showSeats && <SeatSelections  seats={props.busService.seats_Available} />}
+            {showSeats && <SeatSelections seats={props.busService.seats_Available} price={props.busService.price} />}
         </div>
     )
 }
