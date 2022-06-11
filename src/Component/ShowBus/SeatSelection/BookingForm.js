@@ -1,22 +1,19 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios'
+import { useDispatch } from 'react-redux';
+import { searchedBus} from '../../../redux/action/index'
 
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { searchedBus, searchedByCostumer } from '../../../redux/action/index'
-
+//style
 import { Form } from 'react-bootstrap'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-
 import { ToastContainer, toast } from 'react-toastify';
 import classes from './BookingForm.module.css'
 
 export default function BookingForm(props) {
 
     const dispatch = useDispatch()
-    // const userNameInputRef = useRef("")
-    // const emailInputRef = useRef("")
+
 
     const onToken = async (token) => {
         let data = {

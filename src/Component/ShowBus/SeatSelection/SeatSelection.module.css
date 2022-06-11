@@ -8,7 +8,6 @@
 .busArea {
     margin: 5%;
     border: 3px solid black;
-    height: 38vh;
     width: 10vw;
 }
 
@@ -42,7 +41,9 @@
 
 .seat2 {
     color: brown;
+    cursor: pointer;
 }
+
 
 .details {}
 

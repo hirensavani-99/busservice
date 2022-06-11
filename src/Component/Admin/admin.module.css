@@ -1,0 +1,21 @@
+.formroot {
+    max-width: 50%;
+    border: 10px solid rgb(75, 75, 83);
+    margin: 5% 25%;
+    padding: 10px;
+    border-radius:
+}
+
+.btn {
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.fieldContainer {
+    display: flex;
+}
+
+.field {
+    margin: 1%;
+}

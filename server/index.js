@@ -17,6 +17,7 @@ let users = [
         name: "Hiren",
         email: "hiren@savani.com",
         password: "12345678",
+        isAdmin: true
     },
     {
         userId: 2,
@@ -95,10 +96,12 @@ let busArray = [
     }
 ]
 
+
+//get all bus 
 app.get("/getAllBuses", (req, res) => {
     res.status(200).send(busArray)
 })
-
+//filtered bus 
 app.post("/getsortedBus", (req, res) => {
     const data = req.body;
     console.log(data);
@@ -123,10 +126,12 @@ app.post("/getsortedBus", (req, res) => {
     return res.status(200).send(sortedByPlace)
 
 })
+
+//book ticket 
 app.put("/ticketBooking/:id", (req, res) => {
     let id = req.params.id;
     let data = req.body;
-    ;
+
 
     const bus = busArray.filter(bus => bus.root_Id == id)
 
@@ -139,6 +144,7 @@ app.put("/ticketBooking/:id", (req, res) => {
     }
 })
 
+//user login
 app.post("/user/login", (req, res) => {
 
     let credential = req.body;
@@ -153,6 +159,22 @@ app.post("/user/login", (req, res) => {
     }
 })
 
+//login
+app.post("/admin/login", (req, res) => {
+
+    let credential = req.body;
+    let person = users.filter(user => user.email.toLowerCase() === credential.email.toLowerCase() && user.password.toLowerCase() === credential.password.toLowerCase() && user.isAdmin)
+
+    if (person.length !== 0) {
+
+        return res.status(200).send(person[0])
+    }
+    else {
+        return res.status(400).send("user already exist with this name")
+    }
+})
+
+//register 
 app.post("/user/register", (req, res) => {
     console.log(req.body);
     let credential = req.body;
@@ -162,7 +184,7 @@ app.post("/user/register", (req, res) => {
         return res.status(400).send("person already exist")
     }
     else {
-        const { v4: uuidv4 } = require('uuid');
+
 
         credential.userId = uuidv4();
 
@@ -170,6 +192,74 @@ app.post("/user/register", (req, res) => {
         console.log(users);
         return res.status(200).send(users[users.length - 1])
     }
+})
+
+
+
+//admin section 
+//get all bus by admin
+app.get("/admin/getAllBusses", (req, res) => {
+    res.status(200).send(busArray)
+})
+
+
+//delete bus 
+app.delete('/admin/bus/delete/:id', async (req, res) => {
+    let _id = req.params.id
+
+    try {
+        busArray = busArray.filter(bus => bus.root_Id != _id)
+
+
+        res.status(200).send(busArray)
+    } catch (e) {
+        console.log(e);
+    }
+})
+
+//edit bus 
+app.put('/admin/busSave/:id', async (req, res) => {
+    const id = req.params.id;
+    let updateBus = req.body;
+
+    console.log(req.body);
+    for (let bus of busArray) {
+
+        if (bus.root_Id == id) {
+
+            for (let data in updateBus) {
+                if (bus[data]) {
+                    bus[data] = updateBus[data]
+
+                }
+            }
+            return res.status(201).send(busArray)
+        }
+    }
+})
+
+
+//dd new bus 
+app.post("/admin/addBus", (req, res) => {
+
+    const data = req.body
+    data.root_Id = uuidv4();
+    data.rating = Math.floor(Math.random() * 10);;
+    data.ratedBy = Math.floor(Math.random() * 1000) - 5;
+    data.seats_Available = Array(30).fill(0, 0, 30)
+    data.facility = ['water', 'meal', 'wifi', 'pillow', 'blankets', 'chargingpoints', 'readinglights', 'EContactNumber', 'Tracking']
+
+    try {
+
+        busArray.push(data)
+        res.status(201).send(busArray)
+
+        console.log(busArray);
+    } catch (e) {
+        res.status(400).send('unable to create a student')
+    }
+
+
 })
 
 app.listen(port, () => {
