@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+//will show list of buses  
+//-------
 
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import moment from 'moment';
-
+//components
 import SeatSelections from '../SeatSelection/SeatSelection';
-
+//style
 import Card from '@mui/material/Card';
 import Box from '@mui/material/Box'
 import Avatar from '@mui/material/Avatar'
@@ -22,22 +24,20 @@ import ElectricalServicesIcon from '@mui/icons-material/ElectricalServices';
 import NightlightIcon from '@mui/icons-material/Nightlight';
 import ShareLocationIcon from '@mui/icons-material/ShareLocation';
 import SmartDisplayIcon from '@mui/icons-material/SmartDisplay';
-
+import { Transition } from 'react-transition-group';
 
 import classes from './Bus.module.css'
 
 export default function Bus(props) {
-
+ //props:->full bus data 
 
 
     const [showSeats, setShowSeats] = useState(false)
-
-
     const handleSeats = () => {
-        setShowSeats(!showSeats)
+        setShowSeats(!showSeats)     //should show seat selection model or not 
     }
 
-
+    //calculation of seats 
     const availableSeat = (totalSeats) => {
         let emptySeats = 0;
         totalSeats.map(seat => {
@@ -150,7 +150,10 @@ export default function Bus(props) {
                 </Box>
 
             </Card>
-            {showSeats && <SeatSelections seats={props.busService.seats_Available} price={props.busService.price} id={props.busService.root_Id}/>}
+                
+            {showSeats &&
+                <SeatSelections data-testid="seatSelection" seats={props.busService.seats_Available} price={props.busService.price} id={props.busService.root_Id} />
+            }
         </div>
     )
 }

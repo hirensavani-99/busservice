@@ -1,17 +1,16 @@
+//bus container 
+
 import React from 'react'
-
 import { useSelector } from 'react-redux';
-
+//component 
 import Bus from './Bus/Bus';
-
-
-
-
+//style
 import classes from './showBus.module.css'
 
 export default function ShowBus() {
 
     const busData = useSelector(state => state.handleBus)
+    
 
 
     return (

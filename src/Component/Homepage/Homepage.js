@@ -9,14 +9,16 @@ import FooterSection from './HomepageComponent/FooterSection'
 import offersData from '../../Static/OffersData'
 import twitsData from '../../Static/Twits'
 import classes from './Homepage.module.css'
-
-
-
+import { useSpring, animated } from 'react-spring'
+import { Trail } from 'react-spring';
 
 
 
 export default function Homepage() {
-
+    const props = useSpring({
+        from: { width: 0 },
+        to: { width: 100 }
+    })
     return (
         <div>
             <div className={classes.main_container}>
@@ -26,7 +28,10 @@ export default function Homepage() {
                 </div>
             </div>
             <div className={classes.offers}>
-                {offersData.map(offer1 => <Offer key={offer1.title} offerData={offer1} />)}
+
+                {offersData.map(offer1 => <Offer style={props} key={offer1.title} offerData={offer1} />)}
+
+
             </div>
             <div className={classes.aboutUs}>
                 <AboutUs />

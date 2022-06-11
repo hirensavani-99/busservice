@@ -1,19 +1,17 @@
+//search functionality filter 
 import React, { useRef, useState } from 'react'
-
 import axios from 'axios'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { searchedBus, searchedByCostumer } from '../../../redux/action/index'
 
-
+//style
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-
 import LocationCityIcon from '@mui/icons-material/LocationCity';
-
-
 import classes from './BusSearch.module.css'
 
+//array for searching 
 const cities = [
     "Delhi",
     "Mumbai",
@@ -147,10 +145,6 @@ export default function BusSearch() {
                 </div>}
 
             </div>
-
-
-
-
 
             <div className={classes.container1}>
                 <CompareArrowsIcon onClick={handleLocation} className={classes.arrowicon} fontSize="large" />
